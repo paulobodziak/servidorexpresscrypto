@@ -1,8 +1,10 @@
 const express = require("express");
 const crypto = require("crypto");
+const cors = require("cors"); // 🟢 Importa o CORS
 
 const app = express();
 app.use(express.json());
+app.use(cors()); // 🟢 Habilita CORS para todas as origens
 
 const ALGORITHM = "aes-256-cbc";
 const SECRET_KEY = crypto.createHash("sha256").update("C@mp1nas3i6805").digest();
@@ -51,3 +53,4 @@ app.post("/decrypt", (req, res) => {
 // 🔥 Iniciar Servidor
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🚀 Servidor rodando na porta ${PORT}`));
+
